@@ -1,83 +1,38 @@
-import { useEffect, useState } from "react";
-
+import React, { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import SearchBar from "./components/SearchBar/SearchBar";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
+
 import Loader from "./components/Loader/Loader";
-import { fetchImages } from "./services/api";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import toast from "react-hot-toast";
-import ImageModal from "./components/ImageModal/ImageModal";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import Navigation from "./components/Navigation/Navigation";
+
+const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
+const MoviesPage = React.lazy(() => import("./pages/MoviesPage/MoviesPage"));
+const NotFoundPage = React.lazy(() =>
+  import("./pages/NotFoundPage/NotFoundPage")
+);
+const MovieDetailsPage = React.lazy(() =>
+  import("./pages/MovieDetailsPage/MovieDetailsPage")
+);
+const MovieCast = React.lazy(() => import("./components/MovieCast/MovieCast"));
+const MovieReviews = React.lazy(() =>
+  import("./components/MovieReviews/MovieReviews")
+);
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    const getImagesData = async () => {
-      try {
-        if (!query) return;
-
-        setIsLoading(true);
-        const { results, total_pages } = await fetchImages(query, page);
-        setImages((prev) => [...prev, ...results]);
-        setTotalPages(total_pages);
-        setError(null);
-      } catch (error) {
-        setError("True");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getImagesData();
-  }, [query, page]);
-
-  const handleChangeQuery = (newQuery) => {
-    if (query === newQuery) return;
-    setImages([]);
-    setQuery(newQuery);
-    setPage(1);
-  };
-
-  const loadMore = () => {
-    if (page < totalPages) {
-      setPage((prev) => prev + 1);
-    }
-  };
-
-  const openModal = (image) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage(null);
-  };
-
   return (
     <div className="app">
-      <SearchBar onSearchChanged={handleChangeQuery} />
-      <main>
-        {error && <ErrorMessage />}
-        <ImageGallery images={images} onImageClick={openModal} />
-        {isLoading && <Loader />}
-        {!isLoading && page < totalPages && <LoadMoreBtn onClick={loadMore} />}
-        {selectedImage && (
-          <ImageModal
-            isOpen={isModalOpen}
-            image={selectedImage}
-            onClose={closeModal}
-          />
-        )}
-      </main>
+      <Navigation />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

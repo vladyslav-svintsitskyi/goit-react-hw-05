@@ -1,0 +1,28 @@
+.reviewsInfo {
+  margin-top: 32px;
+}
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.reviewsItem {
+  display: flex;
+  gap: 16px;
+}
+
+.reviewsItemAuthor {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.reviewsItemWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nothingText {
+  margin-top: 12px;
+}

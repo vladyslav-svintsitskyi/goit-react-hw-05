@@ -1,0 +1,30 @@
+.castInfo {
+  margin-top: 32px;
+}
+
+.castList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.castInfoWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.castInfoWrap img {
+  display: block;
+  width: 150px;
+  height: auto;
+}
+
+.castItemInfo {
+  font-size: 18px;
+}
+
+.castItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

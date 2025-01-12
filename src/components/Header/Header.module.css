@@ -1,0 +1,44 @@
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.navigationList {
+  list-style: none;
+  display: flex;
+
+  padding: 0;
+  margin: 0;
+}
+
+.navigationItem {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.navigationLink {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+}
+
+.navigationLink:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.active {
+  color: tomato;
+  text-decoration: underline;
+}

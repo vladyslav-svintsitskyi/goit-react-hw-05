@@ -1,0 +1,99 @@
+.movie {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movieDetails {
+  display: flex;
+  gap: 20px;
+}
+
+.movieImage {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.movieTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.movieScore {
+  font-size: 18px;
+  color: #666;
+}
+
+.movieSectionTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+  color: #444;
+}
+
+.movieOverview {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.movieGenres {
+  font-size: 16px;
+  color: #555;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link {
+  text-decoration: none;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.loading {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.active {
+  color: tomato;
+}
+
+.additionalTitle {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.separationLine {
+  width: 100%;
+  background-color: #333;
+  height: 2px;
+  margin-bottom: 12px;
+}
