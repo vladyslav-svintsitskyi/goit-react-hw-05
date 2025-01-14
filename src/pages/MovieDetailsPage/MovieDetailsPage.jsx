@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
+  Link,
   NavLink,
   Outlet,
   useLocation,
@@ -22,8 +23,7 @@ const MovieDetailsPage = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const backLink = useRef(location.state?.from ?? "/movies");
+  const backLink = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     const getData = async () => {
@@ -54,12 +54,9 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={s.movie}>
-      <button
-        className={s.goBackButton}
-        onClick={() => navigate(backLink.current)}
-      >
-        Go back
-      </button>
+      <Link to={backLink.current}>
+        <button className={s.goBackButton}>Go back</button>
+      </Link>
       <div className={s.movieDetails}>
         <img src={image_url} alt={movie.title} className={s.movieImage} />
         <div className={s.movieInfo}>
